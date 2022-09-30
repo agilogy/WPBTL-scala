@@ -1,0 +1,14 @@
+BASIC
+Separar les proves per tests d'exemple i els tests que comproven que funciona la llibreria (provar que el forall tornar el què ha de tornar)
+
+Llegir els 3 primers blogs de l'agilogy blog:
+ - What is an automated test, again?
+ - Testing and persistent state
+ - Testing other side effects
+
+INTERMEDIATE
+Escriure property based testing de la concatenació de strings
+
+ADVANCED
+Fer metatests usant el forAll, provar el forall fent property based testing
+(per tota propietat dels enters si executo forall d'aquesta propietat, el resultat té aquestes propietats)
