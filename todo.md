@@ -4,8 +4,8 @@
 
 ### (Not so) Basic
 
-- Implement a Rational class in `com.agillogy.wpbtl.examples.main` under `src/test` as a case class of the numerator and the denominator.
-- Implement the operator `+` on Rational.
+- Implement a `Rational` class in `com.agillogy.wpbtl.examples.main` under `src/test` as a case class of the numerator and the denominator.
+- Implement the operator `+` on `Rational`.
 - Write property based tests of the sum of rationals. You'll need a way of creating an `Arbitrary[Rational]`. Use `pair` and `map` to build one. 
 
 ### Intermediate
@@ -14,6 +14,8 @@
   - Clue: Create a new combinator not tied to Rational. See the `TODO` comments in the source code
 
 - Create combinators like the one you created for `Rational` for arities 3 and 4.
+
+- Rewrite the `pair` combinator to avoid code repetition with the ones you just wrote.
 
 ### Advanced
 
