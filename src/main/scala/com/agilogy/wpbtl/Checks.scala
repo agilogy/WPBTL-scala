@@ -1,10 +1,6 @@
-object TestFunctions {
+package com.agilogy.wpbtl
 
-  def testMultipleTimes(f: () => Unit): Unit = {
-    (1 to 100).foreach { _ =>
-      f()
-    }
-  }
+object Checks {
 
   def forAll[A](arb: Arbitrary[A])(f: A => Unit): Unit = {
     (1 to 100).foreach { i =>
@@ -31,15 +27,4 @@ object TestFunctions {
     }
   }
 
-  def test(name: String)(f: => Unit) = try {
-    f
-    println(s"Test $name passed")
-  } catch {
-    case e: Throwable =>
-      println(s"Test $name failed: ${e.getMessage}")
-  }
-
-  case class PropertyFailedException(message: String, values: String, cause: Throwable, attempt: Int) extends Exception {
-    override def getMessage: String = s"Property failed for values $values at attempt $attempt with message $message"
-  }
 }

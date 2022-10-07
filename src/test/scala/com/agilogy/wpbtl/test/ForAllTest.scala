@@ -1,4 +1,8 @@
-import TestFunctions.{Arbitrary, forAll, test}
+package com.agilogy.wpbtl.test
+
+import com.agilogy.wpbtl.Arbitrary
+import com.agilogy.wpbtl.Checks.forAll
+import com.agilogy.wpbtl.minitest.MiniTest.test
 
 import scala.util.Try
 
@@ -6,7 +10,7 @@ object ForAllTest extends App {
   test("ForAll throws exception when property fails") {
     val result = Try {
       forAll(Arbitrary.int) { a =>
-        require(a == "a")
+        require(a == 23)
       }
     }
     require(result.isFailure)
@@ -21,14 +25,4 @@ object ForAllTest extends App {
     require(result.isSuccess)
   }
 
-  test("Forall uses random numbers") {
-    forAll(Arbitrary.int) { arbInt1 =>
-      val result = Try(
-        forAll(Arbitrary.int) { arbInt2 =>
-          arbInt1 != arbInt2
-        }
-      )
-      // Assercions sobre result
-    }
-  }
 }

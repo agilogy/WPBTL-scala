@@ -1,5 +1,9 @@
-import Functions.{concat, sum}
-import TestFunctions.{Arbitrary, forAll, test}
+package com.agilogy.wpbtl.examples
+
+import com.agilogy.wpbtl.Arbitrary
+import com.agilogy.wpbtl.Checks.forAll
+import com.agilogy.wpbtl.examples.Functions.concat
+import com.agilogy.wpbtl.minitest.MiniTest.test
 
 object StringTest extends App {
 
@@ -23,4 +27,3 @@ object StringTest extends App {
     }
   }
 }
-

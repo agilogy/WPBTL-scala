@@ -1,7 +1,9 @@
-import Functions.sum
-import TestFunctions.{Arbitrary, forAll, test, testMultipleTimes}
+package com.agilogy.wpbtl.examples
 
-import scala.util.{Random, Try}
+import com.agilogy.wpbtl.Arbitrary
+import com.agilogy.wpbtl.Checks.forAll
+import com.agilogy.wpbtl.examples.Functions.sum
+import com.agilogy.wpbtl.minitest.MiniTest.test
 
 object SumTest extends App {
 
@@ -13,9 +15,7 @@ object SumTest extends App {
   }
 
   test("Commutativity") {
-    testMultipleTimes { () =>
-      val a = Random.nextInt()
-      val b = Random.nextInt()
+    forAll(Arbitrary.int, Arbitrary.int) { (a, b) =>
       val res1 = sum(a, b)
       val res2 = sum(b, a)
       require(res1 == res2, s"Expected sum to be commutative but sum($a,$b) = $res1 and sum($b,$a) = $res2")
