@@ -1,11 +1,11 @@
-package com.agilogy.wpbtl.examples
+package com.agilogy.wpbtl.examples.test
 
 import com.agilogy.wpbtl.Arbitrary
 import com.agilogy.wpbtl.Checks.forAll
-import com.agilogy.wpbtl.examples.Functions.concat
-import com.agilogy.wpbtl.minitest.MiniTest.test
+import com.agilogy.wpbtl.examples.main.Functions.concat
+import org.scalatest.funsuite.AnyFunSuite
 
-object StringTest extends App {
+class StringTest extends AnyFunSuite {
 
   test("Neutral element") {
     forAll(Arbitrary.string) { s1 =>

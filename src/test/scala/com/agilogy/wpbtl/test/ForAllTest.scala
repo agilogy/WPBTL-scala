@@ -2,11 +2,11 @@ package com.agilogy.wpbtl.test
 
 import com.agilogy.wpbtl.Arbitrary
 import com.agilogy.wpbtl.Checks.forAll
-import com.agilogy.wpbtl.minitest.MiniTest.test
+import org.scalatest.funsuite.AnyFunSuite
 
 import scala.util.Try
 
-object ForAllTest extends App {
+class ForAllTest extends AnyFunSuite {
   test("ForAll throws exception when property fails") {
     val result = Try {
       forAll(Arbitrary.int) { a =>
