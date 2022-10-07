@@ -1,7 +1,3 @@
-import TestFunctionsHelper.randomString
-
-import scala.util.Random
-
 object TestFunctions {
 
   def testMultipleTimes(f: () => Unit): Unit = {
@@ -35,25 +31,12 @@ object TestFunctions {
     }
   }
 
-  case class Arbitrary[A](nextValue: () => A)
-
-  object Arbitrary {
-    val int: Arbitrary[Int] = Arbitrary({
-      () =>
-        val a = Random.nextInt()
-        if(a % 10 < 5) a % 10 else a
-    })
-    val boolean: Arbitrary[Boolean] = Arbitrary(() => Random.nextBoolean())
-    val string: Arbitrary[String] = Arbitrary(() => randomString())
-  }
-
   def test(name: String)(f: => Unit) = try {
     f
     println(s"Test $name passed")
   } catch {
     case e: Throwable =>
       println(s"Test $name failed: ${e.getMessage}")
-    //      e.printStackTrace()
   }
 
   case class PropertyFailedException(message: String, values: String, cause: Throwable, attempt: Int) extends Exception {
