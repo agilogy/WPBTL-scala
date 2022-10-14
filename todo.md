@@ -1,5 +1,22 @@
 # Homework
 
+
+## 2022/10/14
+
+### Basic
+
+- Test `Rational` normalize properly when you `apply` the class. Spoiler by David: You want to test that multiplying
+both numerator and denominator by the same integer (non-zero) value, you get the same normalized value you started with.
+- Create a class `Natural` for [natural numbers](https://en.wikipedia.org/wiki/Natural_number) so that you can't possibly create an instance of `Natural` with a non positive value. Implement addition and multiplication.
+- Write property based tests for `Natural`s addition.
+
+### Intermediate
+
+- Enhance `Rational.+` to support bigger `Int` values. Hint: Use mcmc. (by Adrià)
+- Design a class Json that can represent strings, booleans, numbers, nulls, objects and arrays
+- Implement a function `Json.asString()` that returns the string implementation of your Json and a function `Json.parse(s: String): Try[Json]` that tries to parse a string into an instance of `Json`.
+- Write property based tests of `parse` and `asString`. You will need to define an `Arbitrary[Json]` and that will require combinators we still don't have. Try to generalize them properly to be used in other contexts. Hint: Generate random strings that do not contain quotes and random integers for numbers (don't try to make floating point arithmetic work here).
+
 ## 2022/10/07
 
 ### (Not so) Basic
