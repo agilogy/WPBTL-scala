@@ -11,7 +11,7 @@ class SumTest extends AnyFunSuite {
     intercept[PropertyFailedException] {
       forAll(Arbitrary.int) { a =>
         val res1 = sum(a, 0)
-        require(res1 == a, s"Expected sum to have zero as neutral element but sum($a,0) = $res1")
+        assert(res1 == a, s"Expected sum to have zero as neutral element but sum($a,0) = $res1")
       }
     }
   }
@@ -21,7 +21,7 @@ class SumTest extends AnyFunSuite {
       forAll(Arbitrary.int, Arbitrary.int) { (a, b) =>
         val res1 = sum(a, b)
         val res2 = sum(b, a)
-        require(res1 == res2, s"Expected sum to be commutative but sum($a,$b) = $res1 and sum($b,$a) = $res2")
+        assert(res1 == res2, s"Expected sum to be commutative but sum($a,$b) = $res1 and sum($b,$a) = $res2")
       }
     }
   }

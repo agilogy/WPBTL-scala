@@ -9,20 +9,18 @@ import scala.util.Try
 class ForAllTest extends AnyFunSuite {
   test("ForAll throws exception when property fails") {
     val result = Try {
-      forAll(Arbitrary.int) { a =>
-        require(a == 23)
-      }
+      forAll(Arbitrary.int) { a => assert(a == 23) }
     }
-    require(result.isFailure)
+    assert(result.isFailure)
   }
 
   test("ForAll passes when property is true") {
     val result = Try {
       forAll(Arbitrary.int) { _ =>
-        require(true)
+        assert(true)
       }
     }
-    require(result.isSuccess)
+    assert(result.isSuccess)
   }
 
 }

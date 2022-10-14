@@ -2,7 +2,6 @@ package com.agilogy.wpbtl.examples.main
 
 import com.agilogy.wpbtl.examples.main.Functions.gcd
 
-
 case class Rational private(numerator: Int, denominator: Int) {
   def +(other: Rational): Rational = Rational.apply(this.numerator*other.denominator + other.numerator*this.denominator, other.denominator*this.denominator)
 }

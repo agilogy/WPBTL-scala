@@ -7,7 +7,7 @@ import org.scalatest.funsuite.AnyFunSuite
 class BooleanTest extends AnyFunSuite {
   test("Boolean double negation") {
     forAll(Arbitrary.boolean) { b1 =>
-      require(!(!b1) == b1)
+      assert(!(!b1) == b1)
     }
   }
 }

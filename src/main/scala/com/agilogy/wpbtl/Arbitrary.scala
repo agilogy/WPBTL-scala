@@ -8,6 +8,7 @@ case class Arbitrary[A](nextValue: () => A) {
 }
 
 object Arbitrary {
+
   val int: Arbitrary[Int] = Arbitrary({
     () =>
       val a = Random.nextInt()
@@ -29,34 +30,26 @@ object Arbitrary {
   val boolean: Arbitrary[Boolean] = Arbitrary(() => Random.nextBoolean())
 
   val string: Arbitrary[String] = Arbitrary { () =>
-    val length = 5 + (Random.nextInt() % 6)
-    (1 to length).map { _ =>
-      val r = 97 + (Random.nextInt().abs % 26)
-      r.toChar
-    }.mkString("")
+    (1 to 5 + (Random.nextInt() % 6)).map { _ => (97 + (Random.nextInt().abs % 26)).toChar }.mkString("")
   }
 
   def bind2[A, B, C](a: Arbitrary[A], b: Arbitrary[B])(f: (A, B) => C): Arbitrary[C] =
     Arbitrary(() => f(a.nextValue(), b.nextValue()))
 
+  def pair[A, B](arbA: Arbitrary[A], arbB: Arbitrary[B]): Arbitrary[(A, B)] = bind2(arbA, arbB)(Tuple2.apply)
+
   def bind3[A, B, C, D](a: Arbitrary[A], b: Arbitrary[B], c: Arbitrary[C])(f: (A, B, C) => D): Arbitrary[D] =
     Arbitrary(() => f(a.nextValue(), b.nextValue(), c.nextValue()))
-
-  // TODO: Define bind3, bind4... until you get tired
 
   // TODO: EXPERT: Generalize bind to any arity (somehow, may be a builder), but don't use cats or other external libraries.
   def bindN = ???
 
   def option[T](arb: Arbitrary[T], noneProbabilityPercent: Int = 50): Arbitrary[Option[T]] = {
-    require(noneProbabilityPercent <= 100 && noneProbabilityPercent >= 0)
+    assert(noneProbabilityPercent <= 100 && noneProbabilityPercent >= 0)
     int(max = 100).map {
       case i if i > noneProbabilityPercent => Some(arb.nextValue())
       case _ => None
     }
   }
-
-  def pair[A, B](arbA: Arbitrary[A], arbB: Arbitrary[B]): Arbitrary[(A, B)] = bind2(arbA, arbB)(Tuple2.apply)
-
-
 
 }
