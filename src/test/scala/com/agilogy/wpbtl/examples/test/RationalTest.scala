@@ -28,4 +28,11 @@ class RationalTest extends AnyFunSuite {
     }
   }
 
+  test("Normalization") {
+    forAll(rationalArb, Arbitrary.boundedNonZeroInt(-1000, 1000)) { (a, multiplier) =>
+      val b = Rational(a.numerator*multiplier, a.denominator*multiplier)
+      assert(a == b, s"Expected rational numbers to be equal but $a != $b")
+    }
+  }
+
 }
