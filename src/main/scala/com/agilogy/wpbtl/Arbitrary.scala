@@ -22,6 +22,11 @@ object Arbitrary {
     case n => n
   }
 
+  def boundedNonZeroInt(min: Int = Int.MinValue, max: Int = Int.MaxValue): Arbitrary[Int] = int(min, max).map {
+    case 0 => 1
+    case n => n
+  }
+
   def nonZeroInt(min: Int, max: Int): Arbitrary[Int] = int(min, max).map {
     case 0 => 1
     case n => n
